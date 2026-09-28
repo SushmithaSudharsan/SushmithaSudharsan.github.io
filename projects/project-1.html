@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Financial Stress Test Platform | Sushmitha</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- ========================================
+         NAVIGATION
+    ======================================== -->
+
+    <header>
+      <nav>
+    <a href="../index.html" class="logo">Sushmitha Sudharsan</a>
+
+    <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-links" id="site-navigation">
+        <a href="../about/index.html">About</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../resume/index.html">Resume</a>
+        <a href="../contact/index.html">Contact</a>
+    </div>
+</nav>
+    </header>
+
+    <main>
+      <!-- ========================================
+             PROJECT HERO
+        ======================================== -->
+
+      <section class="project-detail-hero">
+        <p class="section-label">
+          MLOPS · MACHINE LEARNING · FINANCIAL ANALYTICS
+        </p>
+
+        <h1>MLOPs Financial Stress Test Platform</h1>
+
+        <p class="project-detail-intro">
+          Exploring how companies could respond to historical economic stress
+          scenarios through an end-to-end machine learning and MLOps system.
+        </p>
+
+        <div class="project-meta">
+          <div>
+            <span>TEAM</span>
+            <p>6 members</p>
+          </div>
+
+          <div>
+            <span>MY CONTRIBUTION</span>
+            <p>CI/CD pipeline</p>
+          </div>
+
+          <div>
+            <span>PROJECT TYPE</span>
+            <p>Coursework + implementation</p>
+          </div>
+        </div>
+
+        <div class="project-detail-links">
+          <a
+            href="https://github.com/SushmithaSudharsan/Mlops_Project_FinancialCrises"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </section>
+
+      <!-- ========================================
+             THE PROBLEM
+        ======================================== -->
+
+      <section class="project-story">
+        <div class="project-story-heading">
+          <p class="section-label">THE PROBLEM</p>
+
+          <h2>What if a previous financial crisis happened again?</h2>
+        </div>
+
+        <div class="project-story-content">
+          <p>
+            Financial prediction often focuses on what might happen next. We
+            wanted to explore a different question: what could happen if a
+            historical economic stress scenario occurred again?
+          </p>
+
+          <p>
+            We built a platform that uses historical financial and economic data
+            to generate stress scenarios inspired by events such as the 2008
+            financial crisis and the COVID-19 period, and then examines how
+            companies could respond under those conditions.
+          </p>
+
+          <p>
+            The goal was to provide a way to explore potential vulnerabilities
+            under severe economic conditions rather than only looking at
+            ordinary short-term market behaviour.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================
+             THE APPROACH
+        ======================================== -->
+
+      <section class="project-story">
+        <div class="project-story-heading">
+          <p class="section-label">THE APPROACH</p>
+
+          <h2>Why we chose financial stress testing.</h2>
+        </div>
+
+        <div class="project-story-content">
+          <p>
+            Instead of trying to predict the next day's market movement, we
+            wanted to explore how companies might respond when conditions
+            resemble a previous period of severe economic stress.
+          </p>
+
+          <p>
+            The idea was to use patterns from historical situations to create
+            hypothetical stress scenarios and examine how different financial
+            indicators and companies could respond.
+          </p>
+
+          <p>
+            This shifted the focus from ordinary short-term prediction toward
+            understanding potential vulnerabilities under unusual economic
+            conditions.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================
+             HOW IT WORKS
+        ======================================== -->
+
+      <section class="project-architecture">
+        <div class="project-section-heading">
+          <p class="section-label">HOW IT WORKS</p>
+
+          <h2>How the system connects data, models, and infrastructure.</h2>
+
+          <p>
+            The platform combines financial data collection, scenario
+            generation, financial prediction, risk detection, automated
+            workflows, monitoring, and cloud deployment into one end-to-end
+            system.
+          </p>
+        </div>
+
+        <div class="architecture-flow">
+          <div class="architecture-step">
+            <span>01</span>
+
+            <h3>Data</h3>
+
+            <p>
+              Financial and economic data was collected, cleaned, merged,
+              transformed, and validated before entering the modeling pipeline.
+            </p>
+
+            <small>
+              Yahoo Finance · FRED · Alpha Vantage · Airflow · GCS
+            </small>
+          </div>
+
+          <div class="architecture-step">
+            <span>02</span>
+
+            <h3>Scenario Generation</h3>
+
+            <p>
+              The VAE generated numerical scenarios based on the stress
+              conditions represented in the historical data.
+            </p>
+
+            <small> VAE · PyTorch </small>
+          </div>
+
+          <div class="architecture-step">
+            <span>03</span>
+
+            <h3>Financial Prediction</h3>
+
+            <p>
+              Predictor models estimated financial outcomes under the generated
+              scenarios.
+            </p>
+
+            <small> LightGBM · XGBoost </small>
+          </div>
+
+          <div class="architecture-step">
+            <span>04</span>
+
+            <h3>Risk Detection</h3>
+
+            <p>
+              Anomaly detection examined financial patterns and produced risk
+              assessments, with SHAP providing feature-level explanations.
+            </p>
+
+            <small> One-Class SVM · SHAP </small>
+          </div>
+
+          <div class="architecture-step">
+            <span>05</span>
+
+            <h3>MLOps &amp; Deployment</h3>
+
+            <p>
+              CI/CD, monitoring, model versioning, and cloud deployment
+              connected the individual components into a repeatable ML workflow.
+            </p>
+
+            <small>
+              Docker · FastAPI · GCP · MLflow · Prometheus · Grafana
+            </small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================
+             THE ML PIPELINE
+        ======================================== -->
+
+      <section class="project-models">
+        <div class="project-section-heading">
+          <p class="section-label">THE ML PIPELINE</p>
+
+          <h2>Why the problem was split across three models.</h2>
+
+          <p>
+            Each model solves a different part of the problem: generating stress
+            scenarios, predicting financial outcomes, and identifying
+            potentially unusual or high-risk conditions.
+          </p>
+        </div>
+
+        <div class="model-grid">
+          <article class="model-card">
+            <span>01</span>
+
+            <h3>Scenario Generation</h3>
+
+            <p>
+              The VAE generated synthetic numerical scenarios based on the
+              stress conditions represented in the historical data.
+            </p>
+
+            <div class="model-detail">72 input features</div>
+          </article>
+
+          <article class="model-card">
+            <span>02</span>
+
+            <h3>Financial Predictors</h3>
+
+            <p>
+              Multiple predictor models estimated financial outcomes such as
+              revenue, EPS, debt, margin, and stock return.
+            </p>
+
+            <div class="model-detail">211 features</div>
+          </article>
+
+          <article class="model-card">
+            <span>03</span>
+
+            <h3>Risk &amp; Anomaly Detection</h3>
+
+            <p>
+              The anomaly component identified potentially unusual financial
+              conditions and produced a risk assessment. SHAP was used to
+              provide feature-level explanations.
+            </p>
+
+            <div class="model-detail">14 features</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================================
+             MY ROLE
+        ======================================== -->
+
+      <section class="project-contribution">
+        <div class="project-story-heading">
+          <p class="section-label">MY ROLE</p>
+
+          <h2>Building the workflow around the models.</h2>
+        </div>
+
+        <div class="project-contribution-content">
+          <p>
+            My primary contribution was the CI/CD side of the project, where I
+            worked on the automation needed to move the ML components beyond
+            individual development environments.
+          </p>
+
+          <p>
+            The project was developed alongside our MLOps coursework, so we
+            implemented the concepts as we learned them rather than starting
+            with an existing production pipeline.
+          </p>
+
+          <p>
+            My work focused on understanding how the different components could
+            move from development into a repeatable workflow involving testing,
+            training, validation, and deployment.
+          </p>
+        </div>
+
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <span>01</span>
+            <strong>Code Push</strong>
+          </div>
+
+          <div class="pipeline-line"></div>
+
+          <div class="pipeline-step">
+            <span>02</span>
+            <strong>Testing</strong>
+          </div>
+
+          <div class="pipeline-line"></div>
+
+          <div class="pipeline-step">
+            <span>03</span>
+            <strong>Training</strong>
+          </div>
+
+          <div class="pipeline-line"></div>
+
+          <div class="pipeline-step">
+            <span>04</span>
+            <strong>Validation</strong>
+          </div>
+
+          <div class="pipeline-line"></div>
+
+          <div class="pipeline-step">
+            <span>05</span>
+            <strong>Deployment</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================
+             THE MLOPS LAYER
+        ======================================== -->
+
+      <section class="project-story">
+        <div class="project-story-heading">
+          <p class="section-label">THE MLOPS LAYER</p>
+
+          <h2>Why a trained model is only the beginning.</h2>
+        </div>
+
+        <div class="project-story-content">
+          <p>
+            A model that works locally still needs testing, reproducible
+            training, validation, deployment, monitoring, and a way to handle
+            future changes. This was the part of the project that introduced me
+            to the engineering work around an ML model.
+          </p>
+
+          <p>
+            A model trained on one developer's machine may work there, but
+            changing data, dependencies, model versions, and deployment
+            environments make it difficult to maintain a consistent system by
+            manually sharing trained models.
+          </p>
+
+          <p>
+            That problem becomes even larger when moving from a six-person
+            development team to a system intended to serve many users.
+          </p>
+
+          <p>
+            CI/CD helped us think about the ML system as an automated workflow
+            rather than a collection of individual notebooks or locally trained
+            models.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================
+             MONITORING & RETRAINING
+        ======================================== -->
+
+      <section class="project-monitoring">
+        <div class="project-section-heading">
+          <p class="section-label">MONITORING &amp; RETRAINING</p>
+
+          <h2>How we kept the system responsive to changing data.</h2>
+
+          <p>
+            Since the project focused on economic stress patterns rather than
+            continuously changing short-term market conditions, we chose
+            scheduled monitoring and retraining instead of constantly retraining
+            the models.
+          </p>
+        </div>
+
+        <div class="monitoring-flow">
+          <div class="monitoring-step">
+            <span>01</span>
+
+            <h3>Weekly Monitoring</h3>
+
+            <p>Monitor model and data behaviour on a scheduled basis.</p>
+          </div>
+
+          <div class="monitoring-step">
+            <span>02</span>
+
+            <h3>Detect Drift</h3>
+
+            <p>
+              Check for changes in data distributions, model behaviour, and
+              concept relationships.
+            </p>
+          </div>
+
+          <div class="monitoring-step">
+            <span>03</span>
+
+            <h3>Retrain</h3>
+
+            <p>
+              Trigger the retraining workflow when defined conditions indicate
+              degradation.
+            </p>
+          </div>
+
+          <div class="monitoring-step">
+            <span>04</span>
+
+            <h3>Validate &amp; Deploy</h3>
+
+            <p>
+              Validate the updated models before making them available for
+              deployment.
+            </p>
+          </div>
+        </div>
+
+        <p class="project-note">
+          The monitoring and retraining workflow was manually tested during
+          development to verify that the pipeline behaved as expected.
+        </p>
+      </section>
+
+      <!-- ========================================
+             CHALLENGES
+        ======================================== -->
+
+      <section class="project-challenges">
+        <div class="project-section-heading">
+          <p class="section-label">CHALLENGES</p>
+
+          <h2>The problems we had to solve along the way.</h2>
+
+          <p>
+            The original design did not work perfectly from the start.
+            Data-fetching issues, model integration, and deployment problems
+            forced us to troubleshoot and change parts of our approach.
+          </p>
+        </div>
+
+        <div class="challenge-list">
+          <article class="challenge-item">
+            <span>01</span>
+
+            <div>
+              <h3>Financial data collection</h3>
+
+              <p>
+                We encountered runtime and data-fetching issues as the volume of
+                financial data increased. Repeated problems with the original
+                data source eventually required us to reconsider our approach.
+              </p>
+            </div>
+          </article>
+
+          <article class="challenge-item">
+            <span>02</span>
+
+            <div>
+              <h3>Connecting different models</h3>
+
+              <p>
+                Each model operated on different data and performed a different
+                task. Getting the components to work together around the same
+                end goal was more complicated than working with each model
+                individually.
+              </p>
+            </div>
+          </article>
+
+          <article class="challenge-item">
+            <span>03</span>
+
+            <div>
+              <h3>Deployment</h3>
+
+              <p>
+                Some components that worked during development encountered
+                problems during deployment. This required additional
+                troubleshooting across the application, dependencies, model
+                components, and cloud environment.
+              </p>
+            </div>
+          </article>
+
+          <article class="challenge-item">
+            <span>04</span>
+
+            <div>
+              <h3>Changing the data source</h3>
+
+              <p>
+                When financial data-fetching issues continued, we changed our
+                approach and incorporated the Alpha Vantage API rather than
+                continuing with the original approach alone.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================================
+             RESULTS
+        ======================================== -->
+
+      <section class="project-results">
+        <div class="project-section-heading">
+          <p class="section-label">RESULTS</p>
+
+          <h2>What the system was able to deliver.</h2>
+
+          <p>
+            The final system brought together scenario generation, financial
+            prediction, risk detection, automated workflows, monitoring, and
+            deployment into a single stress-testing platform.
+          </p>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-item">
+            <strong> 82% </strong>
+
+            <span> ROC-AUC reported for the anomaly model </span>
+          </div>
+
+          <div class="result-item">
+            <strong> 20 </strong>
+
+            <span> predictor model configurations evaluated </span>
+          </div>
+
+          <div class="result-item">
+            <strong> Weekly </strong>
+
+            <span> scheduled drift monitoring </span>
+          </div>
+
+          <div class="result-item">
+            <strong> Automated </strong>
+
+            <span> training, validation, and deployment workflow </span>
+          </div>
+        </div>
+
+        <p class="project-note">
+          Metrics and workflow characteristics shown here are reported in the
+          project documentation.
+        </p>
+      </section>
+
+      <!-- ========================================
+             TAKEAWAYS
+        ======================================== -->
+
+      <section class="project-learning">
+        <div class="project-story-heading">
+          <p class="section-label">TAKEAWAYS</p>
+
+          <h2>What this project changed about how I think about ML.</h2>
+        </div>
+
+        <div class="project-story-content">
+          <p>
+            I came into the project thinking primarily about models. I left with
+            a much clearer understanding of everything required to turn those
+            models into a reproducible and maintainable ML system.
+          </p>
+
+          <p>
+            I learned how much exists between a trained model and a usable ML
+            product: data collection, validation, integration, testing,
+            deployment, monitoring, versioning, and retraining.
+          </p>
+
+          <p>
+            I also learned that MLOps is not simply a collection of tools. It is
+            about creating an automated workflow that makes an ML system
+            reproducible and maintainable as the data, code, models, and
+            environment change.
+          </p>
+
+          <p>
+            Working in a six-member team also taught me how to handle
+            conflicting ideas, divide responsibilities, complete work that
+            another person could build on, and keep moving under pressure.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================
+             REFLECTION
+        ======================================== -->
+
+      <section class="project-reflection">
+        <div class="project-section-heading">
+          <p class="section-label">REFLECTION</p>
+
+          <h2>What I would explore further.</h2>
+
+          <p>
+            The project also showed me where I want to build more depth as I
+            continue working across AI and ML engineering.
+          </p>
+        </div>
+
+        <div class="project-story-content">
+          <p>
+            If I were building the project again, I would spend more time
+            developing my understanding of the financial domain and the
+            structure of complex financial data.
+          </p>
+
+          <p>
+            I would also like to explore more creative ways of representing and
+            generating financial stress scenarios while continuing to strengthen
+            the engineering side of the system.
+          </p>
+        </div>
+      </section>
+
+      <!-- ========================================
+             TECHNOLOGY
+        ======================================== -->
+
+      <section class="project-stack">
+        <div class="project-section-heading">
+          <p class="section-label">TECHNOLOGY</p>
+
+          <h2>The tools behind the system.</h2>
+
+          <p>
+            Different parts of the project used different tools across machine
+            learning, orchestration, deployment, experiment tracking, and
+            monitoring.
+          </p>
+        </div>
+
+        <div class="stack-list">
+          <span>Python</span>
+          <span>PyTorch</span>
+          <span>LightGBM</span>
+          <span>XGBoost</span>
+          <span>Airflow</span>
+          <span>MLflow</span>
+          <span>Docker</span>
+          <span>FastAPI</span>
+          <span>GCP</span>
+          <span>Cloud Run</span>
+          <span>Prometheus</span>
+          <span>Grafana</span>
+          <span>Evidently</span>
+        </div>
+      </section>
+
+      <!-- ========================================
+             PROJECT END
+        ======================================== -->
+
+      <section class="project-end">
+        <p class="section-label">PROJECT</p>
+
+        <h2>Explore the implementation.</h2>
+
+        <div class="project-detail-links">
+          <a
+            href="https://github.com/SushmithaSudharsan/Mlops_Project_FinancialCrises"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View GitHub repository
+          </a>
+
+          <a href="index.html"> Back to projects </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+      <p>© 2026 Sushmitha Sudharsan. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

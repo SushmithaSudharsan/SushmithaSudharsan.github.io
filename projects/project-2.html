@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>GenAI Sports Analysis Chatbot | Sushmitha</title>
+
+    <meta
+      name="description"
+      content="A GenAI sports analysis chatbot combining RAG, semantic retrieval, prompt engineering, conversation memory, and code-based prediction."
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <header class="site-header">
+      <nav>
+    <a href="../index.html" class="logo">Sushmitha Sudharsan</a>
+
+    <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-links" id="site-navigation">
+        <a href="../about/index.html">About</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../resume/index.html">Resume</a>
+        <a href="../contact/index.html">Contact</a>
+    </div>
+</nav>
+    </header>
+
+    <main>
+      <!-- Project Hero -->
+      <section class="project-detail-hero">
+        <div class="project-detail-label">FEATURED PROJECT · GENAI</div>
+
+        <h1>World Cup Match Predictor &amp; Analyst Chatbot</h1>
+
+        <p class="project-detail-intro">
+          Building a conversational AI system that combines retrieval,
+          structured data, and LLMs to answer World Cup questions with grounded
+          evidence.
+        </p>
+
+        <div class="project-meta">
+          <div class="project-meta-item">
+            <span>TEAM</span>
+            <p>3 members</p>
+          </div>
+
+          <div class="project-meta-item">
+            <span>CONTEXT</span>
+            <p>Northeastern University GenAI Hackathon</p>
+          </div>
+
+          <div class="project-meta-item">
+            <span>MY CONTRIBUTION</span>
+            <p>
+              Data pipeline · Validation · FAISS vector store · Prompt templates
+              · State persistence
+            </p>
+          </div>
+        </div>
+
+        <div class="project-detail-links">
+          <a
+            href="https://github.com/SushmithaSudharsan/GenAI_Hackathon_Grp5"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            View on GitHub
+          </a>
+
+          <a href="../projects/index.html" class="text-link">
+            Back to projects
+          </a>
+        </div>
+      </section>
+
+      <!-- The Problem -->
+      <section class="project-story">
+        <div class="project-section-heading">
+          <p class="section-label">THE PROBLEM</p>
+
+          <h2>
+            How do you make an LLM answer sports questions without simply making
+            things up?
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            The hackathon problem statement was to build a conversational AI
+            experience around World Cup football data.
+          </p>
+
+          <p>
+            The challenge was not just getting an LLM to answer questions. We
+            needed to make the answers specific to the data we had, while giving
+            the model enough context to answer questions naturally.
+          </p>
+
+          <p>
+            The underlying dataset contained tens of thousands of international
+            football matches, but users would not necessarily ask questions
+            using the exact words or terminology present in that data.
+          </p>
+
+          <p>That created two problems:</p>
+
+          <ul class="project-list">
+            <li>
+              How do we retrieve the right information when a user's wording
+              does not directly match the stored data?
+            </li>
+
+            <li>
+              How do we make sure the LLM uses that information instead of
+              generating an answer that sounds convincing but is unsupported?
+            </li>
+          </ul>
+
+          <p>
+            The final system combined a structured data pipeline, semantic
+            retrieval, prompt-controlled generation, and a code-based prediction
+            component.
+          </p>
+        </div>
+      </section>
+
+      <!-- The Approach -->
+      <section class="project-story project-story-reverse">
+        <div class="project-section-heading">
+          <p class="section-label">THE APPROACH</p>
+
+          <h2>
+            We treated the LLM as part of the system, not the entire system.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            Instead of simply sending a question to GPT and asking it to answer,
+            we built an application around the model.
+          </p>
+
+          <p>The system had two major stages.</p>
+
+          <div class="project-detail-block">
+            <h3>01 · Prepare the knowledge</h3>
+
+            <p>
+              The football datasets were cleaned, validated, transformed,
+              analyzed, and converted into documents. Those documents were then
+              embedded and stored in FAISS for semantic retrieval.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>02 · Answer the user</h3>
+
+            <p>
+              When someone asked a question, the application retrieved relevant
+              information and passed that context to the LLM along with
+              instructions about how the answer should be generated.
+            </p>
+          </div>
+
+          <p>
+            For prediction questions, the numerical analysis was calculated by
+            code first. The LLM was then given those computed results rather
+            than being allowed to invent statistics.
+          </p>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="project-section">
+        <div class="project-section-heading">
+          <p class="section-label">HOW IT WORKS</p>
+
+          <h2>From raw football data to a conversational answer.</h2>
+        </div>
+
+        <div class="architecture">
+          <div class="architecture-step">
+            <div class="architecture-number">01</div>
+
+            <div class="architecture-title">DATA</div>
+
+            <div class="architecture-description">
+              Four football datasets were brought into the pipeline and checked
+              for consistency.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">02</div>
+
+            <div class="architecture-title">VALIDATION</div>
+
+            <div class="architecture-description">
+              We checked for missing values, duplicates, invalid scores, and
+              other data issues before using the information downstream.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">03</div>
+
+            <div class="architecture-title">PROCESSING</div>
+
+            <div class="architecture-description">
+              The data was transformed into useful features and normalized,
+              including team names and match-level information.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">04</div>
+
+            <div class="architecture-title">KNOWLEDGE BASE</div>
+
+            <div class="architecture-description">
+              Relevant information was turned into more than 200 documents and
+              embedded into a FAISS vector store.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">05</div>
+
+            <div class="architecture-title">RETRIEVAL</div>
+
+            <div class="architecture-description">
+              A user's question was converted into a semantic search query so
+              relevant information could be retrieved even when the wording did
+              not exactly match the underlying data.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">06</div>
+
+            <div class="architecture-title">GENERATION</div>
+
+            <div class="architecture-description">
+              Retrieved context was passed to GPT-4o with carefully designed
+              prompts that constrained how the model should respond.
+            </div>
+          </div>
+
+          <div class="architecture-step">
+            <div class="architecture-number">07</div>
+
+            <div class="architecture-title">RESPONSE</div>
+
+            <div class="architecture-description">
+              The chatbot returned an answer through a Gradio interface while
+              conversation state and user preferences could persist across
+              interactions.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- My Role -->
+      <section class="project-story">
+        <div class="project-section-heading">
+          <p class="section-label">MY ROLE</p>
+
+          <h2>
+            Building the parts that helped the LLM work with reliable
+            information.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <div class="project-detail-block">
+            <h3>Data pipeline &amp; validation</h3>
+
+            <p>
+              I worked with the football datasets before they reached the
+              chatbot.
+            </p>
+
+            <p>
+              That meant making sure the data was usable and consistent enough
+              for the later retrieval and analysis stages.
+            </p>
+
+            <p>
+              This was more important than I initially expected. A chatbot can
+              only be as useful as the information it has access to, and
+              problems in the underlying data eventually become problems in the
+              answer.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>FAISS vector store</h3>
+
+            <p>
+              I worked on the FAISS vector store used for semantic retrieval.
+            </p>
+
+            <p>
+              The reason this mattered became clear when thinking about how real
+              users ask questions.
+            </p>
+
+            <p>
+              A user might ask something using completely different wording from
+              the way information appears in the dataset. Exact keyword matching
+              would not necessarily find the information we needed.
+            </p>
+
+            <p>
+              Semantic search gave us a way to retrieve information based on
+              meaning, rather than relying only on matching individual words.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>Prompt templates</h3>
+
+            <p>
+              I also worked on the prompt templates that controlled how the LLM
+              should use the retrieved information.
+            </p>
+
+            <p>
+              This taught me that prompting is not simply about saying "answer
+              this question."
+            </p>
+
+            <p>
+              We had to specify what the model's task was, what information it
+              could use, what it should do when information was unavailable, and
+              how it should use retrieved evidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RAG Layer -->
+      <section class="project-story project-story-reverse">
+        <div class="project-section-heading">
+          <p class="section-label">THE RAG LAYER</p>
+
+          <h2>
+            Retrieval became the bridge between the user's question and the LLM.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            One of the biggest things I learned was why we needed RAG in the
+            first place.
+          </p>
+
+          <p>
+            We did not want the LLM to answer from whatever knowledge it already
+            had.
+          </p>
+
+          <p>
+            We wanted it to answer based on the information available in our
+            application.
+          </p>
+
+          <p>
+            FAISS helped us retrieve relevant documents through semantic
+            similarity. Those retrieved documents could then be passed into the
+            prompt as context.
+          </p>
+
+          <p>
+            This gave the model something concrete to work from instead of
+            asking it to generate an answer from its own general knowledge.
+          </p>
+
+          <p>
+            The RAG prompt was specifically designed to use retrieved evidence
+            and avoid inventing statistics.
+          </p>
+        </div>
+      </section>
+
+      <!-- Prediction System -->
+      <section class="project-section">
+        <div class="project-section-heading">
+          <p class="section-label">THE PREDICTION SYSTEM</p>
+
+          <h2>Let the code calculate the numbers. Let the LLM explain them.</h2>
+        </div>
+
+        <div class="project-section-content project-content-narrow">
+          <p>The prediction component used five factors:</p>
+
+          <div class="project-factor-grid">
+            <div class="project-factor">
+              <span>01</span>
+              <h3>Recent form</h3>
+              <p>25%</p>
+            </div>
+
+            <div class="project-factor">
+              <span>02</span>
+              <h3>Head-to-head performance</h3>
+              <p>20%</p>
+            </div>
+
+            <div class="project-factor">
+              <span>03</span>
+              <h3>Overall World Cup win rate</h3>
+              <p>25%</p>
+            </div>
+
+            <div class="project-factor">
+              <span>04</span>
+              <h3>Head-to-head goal average</h3>
+              <p>15%</p>
+            </div>
+
+            <div class="project-factor">
+              <span>05</span>
+              <h3>Recent goal difference</h3>
+              <p>15%</p>
+            </div>
+          </div>
+
+          <p>
+            I did not own the prediction logic itself. What interested me was
+            the architectural decision around it.
+          </p>
+
+          <p>
+            The LLM should not be responsible for calculating numerical results
+            that the application can calculate deterministically.
+          </p>
+
+          <p>
+            Instead, the application calculates the values and the LLM uses
+            those values to communicate the result.
+          </p>
+
+          <p>
+            That was an important shift in how I thought about building AI
+            applications.
+          </p>
+        </div>
+      </section>
+
+      <!-- Prompt Engineering -->
+      <section class="project-story">
+        <div class="project-section-heading">
+          <p class="section-label">PROMPT ENGINEERING</p>
+
+          <h2>Small changes in the prompt could make a big difference.</h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            One of my biggest lessons was how much the prompt itself affects the
+            quality of an LLM application.
+          </p>
+
+          <p>Generic prompts often produced generic results.</p>
+
+          <p>
+            When we became more specific about the model's role, the information
+            it could use, the task it was performing, and what it should do when
+            information was unavailable, the responses became much more useful.
+          </p>
+
+          <p>
+            This made prompt engineering feel less like simply "writing
+            instructions" and more like designing an interface between the
+            application and the model.
+          </p>
+        </div>
+      </section>
+
+      <!-- Challenges -->
+      <section class="project-story project-story-reverse">
+        <div class="project-section-heading">
+          <p class="section-label">CHALLENGES</p>
+
+          <h2>The hardest part was not getting the chatbot to respond.</h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            The biggest technical problem we encountered was the data itself.
+          </p>
+
+          <p>
+            Some of the information we wanted was incomplete or slightly biased,
+            which made it difficult to build a completely comprehensive
+            analysis.
+          </p>
+
+          <p>There were also retrieval problems.</p>
+
+          <p>
+            At times, a question would be reasonable from a user's perspective
+            but would not retrieve the information we expected. That forced us
+            to look at the whole retrieval chain rather than assuming the LLM
+            was the problem.
+          </p>
+
+          <div class="project-flow">
+            <div class="project-flow-item">
+              <span>01</span>
+              <p>What did the user ask?</p>
+            </div>
+
+            <div class="project-flow-item">
+              <span>02</span>
+              <p>What did the retrieval system understand?</p>
+            </div>
+
+            <div class="project-flow-item">
+              <span>03</span>
+              <p>What information did it find?</p>
+            </div>
+
+            <div class="project-flow-item">
+              <span>04</span>
+              <p>What information reached the prompt?</p>
+            </div>
+
+            <div class="project-flow-item">
+              <span>05</span>
+              <p>How did the LLM interpret it?</p>
+            </div>
+          </div>
+
+          <p>
+            That experience taught me that when an AI application produces a
+            poor answer, the model is not necessarily the only place to look.
+          </p>
+        </div>
+      </section>
+
+      <!-- Responsible AI -->
+      <section class="project-section">
+        <div class="project-section-heading">
+          <p class="section-label">RESPONSIBLE AI</p>
+
+          <h2>A convincing answer is not necessarily a correct answer.</h2>
+        </div>
+
+        <div class="project-section-content project-content-narrow">
+          <p>
+            One thing this project made very clear to me was that LLMs can
+            sometimes make an answer sound reasonable even when the underlying
+            information is incomplete.
+          </p>
+
+          <p>
+            That became especially important because our data itself had
+            limitations.
+          </p>
+
+          <p>The application therefore used several safeguards:</p>
+
+          <ul class="project-list">
+            <li>Retrieved evidence for RAG responses</li>
+            <li>Code-generated statistics for predictions</li>
+            <li>Fallback behavior when information was unavailable</li>
+            <li>Confidence levels for predictions</li>
+            <li>Explicit limitations around the analysis</li>
+          </ul>
+
+          <p>
+            The project also documented limitations including historical and era
+            bias, the inclusion of friendlies in recent form, and the absence of
+            factors such as player availability, injuries, tactics, weather, and
+            tournament stage.
+          </p>
+
+          <p>
+            The lesson for me was that responsible AI has to be considered while
+            designing the application, not added at the end.
+          </p>
+        </div>
+      </section>
+
+      <!-- Conversation Memory -->
+      <section class="project-story">
+        <div class="project-section-heading">
+          <p class="section-label">CONVERSATION MEMORY</p>
+
+          <h2>
+            The chatbot also needed to remember how the user wanted to interact.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            The application maintained conversation history and stored
+            persistent preferences such as favorite team, answer style,
+            comparison team, and prediction format.
+          </p>
+
+          <p>
+            This helped move the experience away from a collection of isolated
+            prompts toward something that behaved more like an actual
+            conversational application.
+          </p>
+        </div>
+      </section>
+
+      <!-- Biggest Realization -->
+      <section class="project-story project-story-reverse">
+        <div class="project-section-heading">
+          <p class="section-label">MY BIGGEST REALIZATION</p>
+
+          <h2>
+            Building an AI application is very different from prompting an LLM.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            Before this project, I mainly thought about GenAI in terms of models
+            and prompts.
+          </p>
+
+          <p>This project changed that.</p>
+
+          <p>
+            I started seeing everything that has to happen around the model:
+          </p>
+
+          <div class="project-system-line">
+            Data
+            <span>→</span>
+            Retrieval
+            <span>→</span>
+            Prompts
+            <span>→</span>
+            API Calls
+            <span>→</span>
+            Model
+            <span>→</span>
+            Tools
+            <span>→</span>
+            Memory
+            <span>→</span>
+            Guardrails
+            <span>→</span>
+            Response
+          </div>
+
+          <p>
+            You also have to think about how much information to send to the
+            model, when to use code instead of the LLM, how to control API
+            usage, what happens when information is incomplete, and how to
+            prevent the system from producing unsupported answers.
+          </p>
+
+          <p>
+            That gave me my first real understanding of what it means to build
+            an LLM-powered application, rather than simply calling an LLM.
+          </p>
+        </div>
+      </section>
+
+      <!-- What I Would Build Next -->
+      <section class="project-section">
+        <div class="project-section-heading">
+          <p class="section-label">WHAT I WOULD BUILD NEXT</p>
+
+          <h2>I would make the system more autonomous and more current.</h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            If I rebuilt the project today, I would want to go further than the
+            static dataset.
+          </p>
+
+          <div class="project-detail-block">
+            <h3>More tools</h3>
+
+            <p>
+              Give the agent more specialized capabilities instead of relying on
+              a small fixed set of operations.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>Multiple agents</h3>
+
+            <p>
+              Use individual agents for different tasks and let them work
+              together where that actually improves the result.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>Live data</h3>
+
+            <p>
+              Replace the static data dependency with reliable live sources
+              where appropriate, so the system can work with more current
+              information.
+            </p>
+          </div>
+
+          <div class="project-detail-block">
+            <h3>Better analysis</h3>
+
+            <p>
+              Combine those capabilities so the system can gather information,
+              analyze it, and produce a more complete response rather than
+              depending on a fixed snapshot of the data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Takeaways -->
+      <section class="project-story project-story-reverse">
+        <div class="project-section-heading">
+          <p class="section-label">TAKEAWAYS</p>
+
+          <h2>
+            My first substantial GenAI project changed how I think about LLMs.
+          </h2>
+        </div>
+
+        <div class="project-section-content">
+          <p>
+            This was one of my first substantial experiences building with GenAI
+            and LLMs as part of my Northeastern coursework.
+          </p>
+
+          <p>I went into it thinking more about what the model could do.</p>
+
+          <p>
+            I came out thinking much more about what the application needs to do
+            around the model.
+          </p>
+
+          <p>
+            The project taught me how retrieval, prompts, APIs, memory, tools,
+            guardrails, data quality, and responsible AI all affect the final
+            experience.
+          </p>
+
+          <p>
+            It also reinforced something I had started learning through my MLOps
+            work: getting a model to work locally is only one part of building a
+            useful system.
+          </p>
+
+          <p>
+            The interesting engineering starts when you have to make all the
+            pieces work together.
+          </p>
+        </div>
+      </section>
+
+      <!-- Technology -->
+      <section class="project-section">
+        <div class="project-section-heading">
+          <p class="section-label">TECHNOLOGY</p>
+
+          <h2>The tools behind the system.</h2>
+        </div>
+
+        <div class="project-stack">
+          <div class="stack-group">
+            <span>LLM</span>
+
+            <p>GPT-4o</p>
+          </div>
+
+          <div class="stack-group">
+            <span>FRAMEWORK</span>
+
+            <p>LangChain</p>
+          </div>
+
+          <div class="stack-group">
+            <span>RETRIEVAL</span>
+
+            <p>FAISS · Embeddings</p>
+          </div>
+
+          <div class="stack-group">
+            <span>DATA</span>
+
+            <p>Python · Pandas · Football datasets</p>
+          </div>
+
+          <div class="stack-group">
+            <span>APPLICATION</span>
+
+            <p>Gradio</p>
+          </div>
+
+          <div class="stack-group">
+            <span>GENAI CONCEPTS</span>
+
+            <p>
+              RAG · ReAct · Prompt Engineering · Conversation Memory ·
+              Responsible AI
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-end">
+        <div class="project-detail-links">
+          <a
+            href="https://github.com/SushmithaSudharsan/GenAI_Hackathon_Grp5"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            View on GitHub
+          </a>
+
+          <a href="../projects/index.html" class="text-link">
+            Back to projects
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Sushmitha Sudharsan. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

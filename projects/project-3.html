@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>VisionScript: Multimodal Image Captioning | Sushmitha</title>
+
+    <meta
+      name="description"
+      content="VisionScript explores multimodal learning through image captioning, CLIP, GPT-2, BLIP, and visual question answering."
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <<body class="project-3-page">
+    <!-- HEADER -->
+    <header>
+      <nav>
+    <a href="../index.html" class="logo">Sushmitha Sudharsan</a>
+
+    <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-navigation"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nav-links" id="site-navigation">
+        <a href="../about/index.html">About</a>
+        <a href="../projects/index.html">Projects</a>
+        <a href="../resume/index.html">Resume</a>
+        <a href="../contact/index.html">Contact</a>
+    </div>
+</nav>
+    </header>
+
+    <main>
+
+      <!-- ========================================
+           PROJECT HERO
+      ========================================= -->
+
+      <section class="project-detail-hero">
+        <p class="section-label">PROJECT 03</p>
+
+        <h1>VisionScript: Multimodal Image Captioning</h1>
+
+        <p class="project-detail-intro">
+          Exploring how visual representations can be connected to language
+          generation, from a BLIP captioning baseline to CLIP-conditioned GPT-2
+          experiments and interactive visual question answering.
+        </p>
+
+        <div class="project-meta">
+
+          <div class="project-meta-item">
+            <span>TEAM</span>
+            <p>4</p>
+          </div>
+
+          <div class="project-meta-item">
+            <span>CONTEXT</span>
+            <p>Northeastern University coursework</p>
+          </div>
+
+          <div class="project-meta-item">
+            <span>FOCUS</span>
+            <p>
+              Multimodal learning · Image captioning · Vision-language models
+            </p>
+          </div>
+
+        </div>
+
+        <div class="project-detail-links">
+
+          <a
+            href="https://github.com/SimranaSinha/VisionScript-ImageCaptioning-BLIP"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            View on GitHub
+          </a>
+
+          <a
+            href="https://huggingface.co/spaces/Simi2407/VisionScript"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-link"
+          >
+            Live Demo
+          </a>
+
+        </div>
+      </section>
+
+
+      <!-- ========================================
+           PROJECT STORY
+      ======================================== -->
+
+      <div class="project-story">
+
+
+        <!-- ======================================
+             THE PROBLEM
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">THE PROBLEM</p>
+
+            <h2>
+              How do you get a model to describe what is actually in an image?
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              VisionScript explored the connection between images and natural
+              language. The goal was to build a system that could take visual
+              information and turn it into useful language, while also exploring
+              how different vision-language architectures behave.
+            </p>
+
+            <p>
+              Rather than jumping directly to one final model, the project
+              developed progressively across four milestones, starting with a
+              pretrained captioning baseline and moving toward a more
+              interactive multimodal system.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             THE APPROACH
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">THE APPROACH</p>
+
+            <h2>
+              We built the system progressively, one modeling decision at a
+              time.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <div class="project-step">
+
+              <span class="project-step-number">01</span>
+
+              <h3>BLIP baseline</h3>
+
+              <p>
+                Started with a pretrained image-captioning model to establish a
+                baseline for generating descriptions from images.
+              </p>
+
+              <span class="project-step-tools">BLIP</span>
+
+            </div>
+
+
+            <div class="project-step">
+
+              <span class="project-step-number">02</span>
+
+              <h3>CLIP + GPT-2</h3>
+
+              <p>
+                Explored a different modeling path by extracting visual
+                representations with CLIP and connecting them to GPT-2 for
+                language generation.
+              </p>
+
+              <span class="project-step-tools">
+                CLIP · GPT-2
+              </span>
+
+            </div>
+
+
+            <div class="project-step">
+
+              <span class="project-step-number">03</span>
+
+              <h3>Fine-tuning comparison</h3>
+
+              <p>
+                Compared Prefix Tuning, LoRA, full fine-tuning, and the
+                pretrained BLIP baseline to understand how different adaptation
+                strategies affected generated captions.
+              </p>
+
+              <span class="project-step-tools">
+                Prefix Tuning · LoRA · Full Fine-Tuning
+              </span>
+
+            </div>
+
+
+            <div class="project-step">
+
+              <span class="project-step-number">04</span>
+
+              <h3>Interactive vision-language system</h3>
+
+              <p>
+                Extended the final system beyond a single caption to support
+                concise captions, detailed paragraph descriptions, and visual
+                question answering.
+              </p>
+
+              <span class="project-step-tools">
+                Captioning · Paragraphs · VQA
+              </span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             HOW IT WORKS
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">HOW IT WORKS</p>
+
+            <h2>
+              Two modeling paths, four milestones, one evolving system.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <h3>CLIP + GPT-2 pipeline</h3>
+
+            <p>
+              One part of the project explored explicitly connecting a visual
+              encoder with a language model. An image was passed through CLIP to
+              produce a visual representation, which was then connected to GPT-2
+              for caption generation.
+            </p>
+
+            <div class="architecture-flow">
+
+              <span>Image</span>
+              <span>CLIP ViT-B/32</span>
+              <span>Image embedding</span>
+              <span>Embedding projection</span>
+              <span>GPT-2</span>
+              <span>Generated caption</span>
+
+            </div>
+
+
+            <h3>Final BLIP-based system</h3>
+
+            <p>
+              The final VisionScript interface used BLIP and provided three
+              different ways of interacting with an image.
+            </p>
+
+            <div class="architecture-flow">
+
+              <span>Image</span>
+              <span>BLIP</span>
+              <span>Single caption</span>
+              <span>Paragraph caption</span>
+              <span>VQA</span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             THE BASELINE
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">THE BASELINE</p>
+
+            <h2>
+              Starting with a model that already knows how to caption images.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              The first milestone established a baseline using BLIP's
+              pretrained image-captioning capabilities. We worked with the
+              Flickr30k dataset, including preprocessing and creating a subset
+              of roughly 1,000 image-caption pairs for experimentation.
+            </p>
+
+            <p>
+              CLIP embeddings were also extracted and cached, while the GPT-2
+              tokenizer was used to examine caption characteristics such as
+              length.
+            </p>
+
+            <p>
+              The baseline successfully generated fluent, generally
+              image-grounded captions, but the results were not perfect. That
+              made the baseline useful as a reference point for the experiments
+              that followed.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             CLIP + GPT-2
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">CLIP + GPT-2</p>
+
+            <h2>
+              What happens when visual information is explicitly injected into
+              a language model?
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              The next milestone explored a different approach to multimodal
+              generation. Instead of relying on an already integrated
+              captioning model, the system used CLIP to encode the image and
+              GPT-2 to generate the language.
+            </p>
+
+            <p>
+              The visual representation was projected into a form that could be
+              passed into GPT-2 as part of the generation process. This created
+              a direct connection between the visual input and the
+              language-generation stage.
+            </p>
+
+            <p>
+              Different decoding strategies were also explored, including
+              greedy decoding, beam search, and nucleus sampling. The
+              experiments showed that decoding strategy can affect how natural,
+              structured, or repetitive the resulting captions become.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FINE-TUNING EXPERIMENTS
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">FINE-TUNING EXPERIMENTS</p>
+
+            <h2>
+              Different ways of adapting the language model produced different
+              behavior.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              The third milestone compared several approaches for adapting the
+              CLIP-GPT-2 system: Prefix Tuning, LoRA, and full fine-tuning. The
+              pretrained BLIP model was also retained as a baseline for
+              comparison.
+            </p>
+
+            <p>
+              The experiments highlighted an important trade-off. Parameter-
+              efficient approaches such as Prefix Tuning and LoRA reduce the
+              amount of the model that needs to be trained, but the resulting
+              caption quality can vary depending on the image.
+            </p>
+
+            <p>
+              In the documented test examples, BLIP produced the most
+              consistently accurate descriptions. LoRA generally produced more
+              relevant descriptions than Prefix Tuning, while full fine-tuning
+              could produce more descriptive outputs but also showed cases of
+              overfitting or incorrect descriptions.
+            </p>
+
+            <p>
+              I was not the primary contributor to these fine-tuning
+              implementations, so I treat this milestone mainly as an important
+              part of the project's comparative experimentation.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FINAL SYSTEM
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">FINAL SYSTEM</p>
+
+            <h2>
+              From generating one caption to supporting different ways of
+              understanding an image.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              The final VisionScript system used BLIP and expanded the
+              interaction beyond a single generated sentence. Users could
+              choose between a short caption, a more detailed paragraph, or a
+              question-answering mode.
+            </p>
+
+            <p>
+              The paragraph mode was designed to provide richer descriptions
+              involving context and relationships, while VQA allowed the user
+              to ask questions about the contents of an image.
+            </p>
+
+            <p>
+              The interface was developed as a team effort, including work with
+              another teammate.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             RESULTS
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">RESULTS</p>
+
+            <h2>
+              The final system supported three different forms of visual
+              understanding.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <div class="result-item">
+
+              <span>SINGLE</span>
+
+              <p>
+                Short, concise image descriptions that provide a quick summary
+                of the visual input.
+              </p>
+
+            </div>
+
+
+            <div class="result-item">
+
+              <span>PARAGRAPH</span>
+
+              <p>
+                More detailed descriptions with additional context and
+                relationships between elements in the image.
+              </p>
+
+            </div>
+
+
+            <div class="result-item">
+
+              <span>VQA</span>
+
+              <p>
+                Question answering over the image, allowing users to interact
+                with visual information through natural language.
+              </p>
+
+            </div>
+
+
+            <p>
+              The final system worked particularly well with clear subjects and
+              outdoor scenes. Paragraph generation could sometimes become
+              slightly verbose or repetitive, showing that richer output is not
+              automatically better output.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             WHAT I LEARNED
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">WHAT I LEARNED</p>
+
+            <h2>
+              The interesting part isn't just getting an image and a sentence.
+              It's the connection between them.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              The biggest thing I took away from this project was understanding
+              how image and text pairs are used to train and evaluate
+              multimodal systems.
+            </p>
+
+            <p>
+              Before working on VisionScript, I understood image models and
+              language models more independently. This project helped me see
+              how a visual representation can be connected to language
+              generation and how the quality of the generated language has to
+              be considered alongside whether it is actually grounded in the
+              image.
+            </p>
+
+            <p>
+              It also showed me that fluent language alone is not enough. A
+              caption can sound completely reasonable while still describing
+              the image incorrectly.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             MY ROLE
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">MY ROLE</p>
+
+            <h2>
+              Contributing across the project, with the baseline as my clearest
+              area of hands-on work.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              I contributed across different parts of the project as part of
+              the four-person team. My clearest area of hands-on involvement
+              was the initial BLIP captioning work, including working with the
+              image-caption data, preprocessing, running the baseline, and
+              looking at the generated captions.
+            </p>
+
+            <p>
+              I also participated in the broader development and experimentation
+              that moved the project from a basic captioning baseline toward a
+              multimodal interface with multiple interaction modes.
+            </p>
+
+            <p>
+              I would not describe the individual fine-tuning implementations
+              or the complete VQA system as solely my work. Those parts were
+              developed as team efforts.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             TAKEAWAYS
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">TAKEAWAYS</p>
+
+            <h2>
+              Multimodal systems are about connecting the pieces, not just
+              choosing a model.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              VisionScript gave me a practical introduction to how vision and
+              language models can work together. The project moved from a
+              pretrained baseline through several modeling experiments and
+              eventually into an interactive system.
+            </p>
+
+            <p>
+              More importantly, it helped me understand what sits between an
+              image and a generated answer: visual representations, language
+              modeling, conditioning, decoding, evaluation, and the problem of
+              keeping generated language grounded in the input.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             REFLECTION
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">REFLECTION</p>
+
+            <h2>
+              If I rebuilt it, I would make the architecture easier to compare
+              and extend.
+            </h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <p>
+              I would make the different modeling approaches more modular so
+              that the vision encoder, representation layer, language model,
+              and evaluation pipeline could be changed and compared more easily.
+            </p>
+
+            <p>
+              That would make it easier to experiment with different
+              multimodal architectures while keeping the evaluation process
+              consistent.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             TECHNOLOGY
+        ======================================= -->
+
+        <section class="project-section">
+
+          <div class="project-section-heading">
+
+            <p class="section-label">TECHNOLOGY</p>
+
+            <h2>The tools behind the system.</h2>
+
+          </div>
+
+          <div class="project-section-content">
+
+            <div class="stack-item">
+
+              <span>LANGUAGE</span>
+              <p>Python</p>
+
+            </div>
+
+
+            <div class="stack-item">
+
+              <span>DEEP LEARNING</span>
+              <p>PyTorch</p>
+
+            </div>
+
+
+            <div class="stack-item">
+
+              <span>VISION-LANGUAGE</span>
+              <p>CLIP · BLIP</p>
+
+            </div>
+
+
+            <div class="stack-item">
+
+              <span>LANGUAGE MODEL</span>
+              <p>GPT-2</p>
+
+            </div>
+
+
+            <div class="stack-item">
+
+              <span>FINE-TUNING</span>
+              <p>LoRA · Prefix Tuning</p>
+
+            </div>
+
+
+            <div class="stack-item">
+
+              <span>ENVIRONMENT</span>
+              <p>Google Colab</p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ======================================
+             PROJECT END
+        ======================================= -->
+
+        <section class="project-end">
+
+          <p class="section-label">PROJECT</p>
+
+          <h2>VisionScript: Multimodal Image Captioning</h2>
+
+          <div class="project-detail-links">
+
+            <a
+              href="https://github.com/SimranaSinha/VisionScript-ImageCaptioning-BLIP"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              View on GitHub
+            </a>
+
+            <a
+              href="https://huggingface.co/spaces/Simi2407/VisionScript"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              Live Demo
+            </a>
+
+            <a
+              href="../projects/index.html"
+              class="text-link"
+            >
+              Back to projects
+            </a>
+
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+      <p>© 2026 Sushmitha Sudharsan. All rights reserved.</p>
+    </footer>
+
+
+    <script src="../js/script.js"></script>
+
+  </body>
+</html>
