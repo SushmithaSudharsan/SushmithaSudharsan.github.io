@@ -39,3 +39,27 @@ if (navToggle && navLinks) {
         );
     });
 }
+
+const backToTop = document.createElement("button");
+
+backToTop.className = "back-to-top";
+backToTop.type = "button";
+backToTop.setAttribute("aria-label", "Back to top");
+backToTop.innerHTML = "↑";
+
+document.body.appendChild(backToTop);
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+        backToTop.classList.add("is-visible");
+    } else {
+        backToTop.classList.remove("is-visible");
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
