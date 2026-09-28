@@ -73,10 +73,6 @@ nav {
 }
 
 
-/* ========================================
-   GENERAL LAYOUT
-======================================== */
-
 main {
     width: min(1280px, calc(100% - 60px));
     margin: 0 auto;
@@ -92,7 +88,7 @@ section {
 ======================================== */
 
 .hero {
-    min-height: 620px;
+    min-height: 540px;
 
     display: flex;
     flex-direction: column;
@@ -342,13 +338,13 @@ section {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
 }
 
 .project-card {
-    min-height: 380px;
-    padding: 32px;
+    min-height: 340px;
+    padding: 28px;
 
     border: 1px solid #ddd7ce;
     background: #fffdf9;
@@ -358,7 +354,7 @@ section {
 }
 
 .project-number {
-    margin-bottom: 56px;
+    margin-bottom: 44px;
 
     font-size: 0.75rem;
     font-weight: 700;
@@ -367,24 +363,24 @@ section {
 }
 
 .project-card h3 {
-    max-width: 520px;
-    margin-bottom: 16px;
+    max-width: none;
+    margin-bottom: 14px;
 
-    font-size: 1.7rem;
+    font-size: 1.45rem;
     line-height: 1.15;
     letter-spacing: -0.03em;
 }
 
 .project-card p {
-    max-width: 520px;
-    margin-bottom: 24px;
+    max-width: none;
+    margin-bottom: 20px;
 
     color: #5f5a55;
 }
 
 .project-tech {
     margin-top: auto !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 20px !important;
 
     font-size: 0.82rem;
     color: #7b7169 !important;
@@ -401,6 +397,12 @@ section {
 
 .project-card a:hover {
     opacity: 0.65;
+}
+
+@media (max-width: 900px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -3392,7 +3394,7 @@ p {
    --------------------------------------------------------- */
 
 .nav-links a {
-    font-size: 0.875rem;      /* 14px */
+    font-size: 1rem;      /* 14px */
 }
 
 
@@ -3691,3 +3693,103 @@ p {
         max-width: none;
     }
 }
+
+/* ========================================
+   HOMEPAGE RHYTHM
+   Scoped only to the homepage
+======================================== */
+
+body:has(.hero) .focus {
+    padding: 82px 0 88px;
+}
+
+body:has(.hero) .projects,
+body:has(.hero) .about,
+body:has(.hero) .skills,
+body:has(.hero) .certifications,
+body:has(.hero) .resume,
+body:has(.hero) .contact {
+    padding: 76px 0;
+}
+
+body:has(.hero) .projects {
+    border-top: 1px solid #ded8d0;
+}
+
+body:has(.hero) .section-heading {
+    margin-bottom: 44px;
+}
+
+body:has(.hero) .projects-footer {
+    padding-top: 36px;
+}
+
+/* ========================================
+   FINAL CTA
+======================================== */
+
+.final-cta {
+    padding: 76px 0;
+    border-top: 1px solid #ded8d0;
+}
+
+.final-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+}
+
+.final-cta-item {
+    padding: 12px 56px 12px 0;
+}
+
+.final-cta-item + .final-cta-item {
+    padding: 12px 0 12px 56px;
+    border-left: 1px solid #ded8d0;
+}
+
+.final-cta-item .section-label {
+    margin-bottom: 20px;
+}
+
+.final-cta-item h2 {
+    max-width: 520px;
+    margin-bottom: 20px;
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+}
+
+.final-cta-item p:not(.section-label) {
+    max-width: 520px;
+    margin-bottom: 28px;
+    color: #5f5a55;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .final-cta {
+        padding: 64px 0;
+    }
+
+    .final-cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-cta-item,
+    .final-cta-item + .final-cta-item {
+        padding: 0 0 48px;
+        border-left: none;
+    }
+
+    .final-cta-item + .final-cta-item {
+        padding-top: 48px;
+        border-top: 1px solid #ded8d0;
+    }
+
+    .final-cta-item:last-child {
+        padding-bottom: 0;
+    }
+}
+
