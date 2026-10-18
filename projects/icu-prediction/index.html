@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ICU Mortality &amp; Length-of-Stay Prediction | Sushmitha Sudharsan</title>
+    <meta name="description" content="A machine learning project using MIMIC-IV clinical data to predict ICU mortality and length of stay from the first 24 hours of admission." />
+    <link rel="canonical" href="https://sushmithasudharsan.github.io/projects/icu-prediction/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ICU Mortality &amp; Length-of-Stay Prediction | Sushmitha Sudharsan" />
+    <meta property="og:description" content="A machine learning project using MIMIC-IV clinical data to predict ICU mortality and length of stay from the first 24 hours of admission." />
+    <meta property="og:url" content="https://sushmithasudharsan.github.io/projects/icu-prediction/" />
+    <meta property="og:image" content="https://sushmithasudharsan.github.io/assets/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="Sushmitha Sudharsan" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+
+  
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="case-study">
+
+  <!-- Navigation -->
+  <header>
+      <nav>
+        <a href="/" class="logo">Sushmitha Sudharsan</a>
+
+        <div class="nav-right">
+          <ul class="nav-links" id="site-navigation">
+            <li><a href="/about/">About</a></li>
+            <li><a href="/projects/">Projects</a></li>
+            <li><a href="/resume/">Resume</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+
+          <button class="theme-toggle" type="button" aria-label="Toggle theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+          </button>
+
+          <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+  <main>
+
+    <!-- Project Hero -->
+    <section class="project-detail-hero">
+
+      <p class="section-label">HEALTHCARE ML · EHR ANALYTICS</p>
+
+      <h1>ICU Mortality &amp; Length-of-Stay Prediction</h1>
+
+      <p class="project-detail-intro">
+        Exploring how machine learning can use the first 24 hours of
+        clinical data to predict ICU mortality and length of stay.
+      </p>
+
+      <div class="project-meta">
+          <div class="project-meta-item">
+            <span>TEAM</span>
+            <p>2 members</p>
+          </div>
+          <div class="project-meta-item">
+            <span>MY ROLE</span>
+            <p>Length-of-stay model</p>
+          </div>
+          <div class="project-meta-item">
+            <span>CONTEXT</span>
+            <p>Northeastern coursework</p>
+          </div>
+          <div class="project-meta-item">
+            <span>STACK</span>
+            <p>Python · Pandas · Scikit-learn · XGBoost · MIMIC-IV</p>
+          </div>
+        </div>
+
+        <div class="project-detail-links">
+
+        <a
+          href="https://github.com/SushmithaSudharsan/icu-mortality-prediction-using-ehr-data"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-link"
+        >
+          View on GitHub
+        </a>
+
+        <a
+          href="https://github.com/SushmithaSudharsan/icu-mortality-prediction-using-ehr-data/blob/main/Final_Project%20Report.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-link"
+        >
+          Read project report
+        </a>
+
+        <a href="/projects/" class="text-link">
+          Back to projects
+        </a>
+
+      </div>
+
+    </section>
+
+      <!-- WHAT I BUILT -->
+      <section class="built-box" aria-label="Summary">
+        <p class="section-label">WHAT I BUILT</p>
+        <dl class="built-list">
+          <div><dt>The problem</dt><dd>Using only the first 24 hours of ICU data to predict which patients are at risk and how long they will stay.</dd></div>
+          <div><dt>What I built</dt><dd>The length-of-stay regression models for patients who survived, built from first-24-hour clinical features.</dd></div>
+          <div><dt>Result</dt><dd>All four regressors predicted length of stay within the 1-day MAE target (0.94&ndash;0.96 days). We chose Elastic Net for its simplicity and better generalization.</dd></div>
+        </dl>
+      </section>
+
+      <!-- ARCHITECTURE -->
+      <section class="case-figures">
+        <p class="section-label">ARCHITECTURE</p>
+        <figure class="case-figure">
+          <a href="/assets/images/icu-pipeline.svg" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/icu-pipeline.svg" alt="ICU prediction pipeline. MIMIC-IV data with about 94,000 ICU admissions is loaded in chunks, merged and preprocessed, then split into mortality classification and length-of-stay regression for survivors, which was my part." width="1200" height="600" loading="lazy" />
+          </a>
+          <figcaption>One shared data pipeline feeds two tasks. My part was the length-of-stay regression, highlighted in teal.</figcaption>
+        </figure>
+      </section>
+
+
+    <!-- The Problem -->
+    <section class="project-story">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">THE PROBLEM</p>
+
+        <h2>
+          How much can we predict from the first 24 hours of an ICU stay?
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          This project explored the use of machine learning to predict
+          important ICU outcomes using information available during the
+          first 24 hours of admission.
+        </p>
+
+        <p>
+          The project focused on two related problems: predicting
+          in-hospital ICU mortality and predicting length of stay among
+          patients who survived.
+        </p>
+
+        <p>
+          The underlying data came from MIMIC-IV, a large electronic
+          health record dataset containing clinical information from
+          ICU patients.
+        </p>
+
+        <p>
+          This created a practical machine learning challenge: the
+          information was distributed across large clinical tables,
+          contained missing values, and included many different types
+          of measurements that needed to be prepared before modeling.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- The Approach -->
+    <section class="project-story project-story-reverse">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">THE APPROACH</p>
+
+        <h2>
+          We treated mortality and length of stay as two different
+          prediction problems.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          The mortality task was formulated as a classification problem,
+          while length of stay was treated as a regression problem among
+          surviving patients.
+        </p>
+
+        <div class="project-detail-block">
+
+          <h3>01 · Mortality prediction</h3>
+
+          <p>
+            The objective was to predict in-hospital ICU mortality using
+            clinical information available during the first 24 hours.
+          </p>
+
+        </div>
+
+        <div class="project-detail-block">
+
+          <h3>02 · Length of stay</h3>
+
+          <p>
+            Among surviving patients, the project examined ICU length
+            of stay and the prediction of short stays of seven days or less.
+          </p>
+
+        </div>
+
+        <p>
+          The two tasks allowed us to compare different modeling approaches
+          while working from the same early clinical window.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- Data Preparation -->
+    <section class="project-section">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">DATA PREPARATION</p>
+
+        <h2>
+          Most of the work started before the models were trained.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          MIMIC-IV contains large clinical event tables, so some of the
+          data had to be processed in chunks before it could be used for
+          modeling.
+        </p>
+
+        <p>
+          Clinical, demographic, and diagnostic information was combined
+          using patient and admission identifiers to create the modeling
+          dataset.
+        </p>
+
+        <p>
+          The preprocessing workflow included filtering the study
+          population, checking physiological plausibility, handling
+          missing values through imputation, encoding categorical
+          variables, and preparing the features for the two prediction
+          tasks.
+        </p>
+
+        <div class="project-detail-block">
+
+          <h3>Building the modeling dataset</h3>
+
+          <p>
+            The goal was to create a consistent representation of the
+            patient's early ICU state while avoiding information that
+            would only become available later in the admission.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- How It Works -->
+    <section class="project-section">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">HOW IT WORKS</p>
+
+        <h2>
+          From clinical records to model predictions.
+        </h2>
+
+      </div>
+
+      <div class="architecture">
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">01</div>
+
+          <div class="architecture-title">CLINICAL DATA</div>
+
+          <div class="architecture-description">
+            MIMIC-IV clinical records provided demographic, diagnostic,
+            laboratory, and physiological information.
+          </div>
+
+        </div>
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">02</div>
+
+          <div class="architecture-title">DATA PREPARATION</div>
+
+          <div class="architecture-description">
+            Large event tables were processed and relevant information
+            was combined using patient and admission identifiers.
+          </div>
+
+        </div>
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">03</div>
+
+          <div class="architecture-title">PREPROCESSING</div>
+
+          <div class="architecture-description">
+            Missing values, categorical variables, implausible values,
+            and study-population filters were handled before modeling.
+          </div>
+
+        </div>
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">04</div>
+
+          <div class="architecture-title">FEATURES</div>
+
+          <div class="architecture-description">
+            Clinical variables from the first 24 hours were transformed
+            into features for classification and regression.
+          </div>
+
+        </div>
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">05</div>
+
+          <div class="architecture-title">MODELING</div>
+
+          <div class="architecture-description">
+            Multiple classification and regression models were trained
+            and compared.
+          </div>
+
+        </div>
+
+        <div class="architecture-step">
+
+          <div class="architecture-number">06</div>
+
+          <div class="architecture-title">EVALUATION</div>
+
+          <div class="architecture-description">
+            Models were evaluated using ROC-AUC for mortality and
+            MAE and related regression metrics for length of stay.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Modeling -->
+    <section class="project-story">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">MODELING</p>
+
+        <h2>
+          Comparing different models rather than relying on one approach.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <div class="project-detail-block">
+
+          <h3>Mortality prediction</h3>
+
+          <p>
+            We compared Logistic Regression, Random Forest, XGBoost,
+            and a Multi-Layer Perceptron for the mortality classification
+            task.
+          </p>
+
+        </div>
+
+        <div class="project-detail-block">
+
+          <h3>Length of stay prediction</h3>
+
+          <p>
+            For length-of-stay prediction, we evaluated Elastic Net,
+            KNN, Random Forest, and XGBoost among surviving patients.
+          </p>
+
+        </div>
+
+        <p>
+          Comparing several models made it possible to evaluate how
+          different algorithms handled the same clinical feature space
+          and prediction objectives.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- Results -->
+    <section class="project-section">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">RESULTS</p>
+
+        <h2>
+          Early clinical information showed measurable predictive signal.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          For mortality prediction, XGBoost achieved an ROC-AUC of
+          <strong>0.90</strong>.
+        </p>
+
+        <p>
+          For length-of-stay prediction, the evaluated models produced
+          MAE values between <strong>0.94 and 0.96 days</strong>.
+        </p>
+
+        
+
+      <div class="results-charts">
+        <figure class="case-figure">
+          <a href="/assets/images/icu-mortality-models.svg" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/icu-mortality-models.svg" alt="Mortality prediction results. ROC-AUC: Logistic Regression 0.87, Random Forest 0.89, XGBoost 0.90, MLP 0.89. Recall: 0.90, 0.95, 0.92, 0.91. F1: 0.42, 0.39, 0.44, 0.43. XGBoost was chosen." width="877" height="298" loading="lazy" />
+          </a>
+          <figcaption>Mortality: XGBoost had the best AUC (0.90), above the 0.85 target. F1 stays low for every model because deaths are rare.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <a href="/assets/images/icu-los-models.svg" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/icu-los-models.svg" alt="Length-of-stay results for survivors. MAE in days: Elastic Net 0.96, KNN 0.96, Random Forest 0.95, XGBoost 0.94. RMSE: 1.29, 1.31, 1.23, 1.27. R squared: 0.15, 0.13, 0.17, 0.18. Elastic Net was chosen." width="877" height="298" loading="lazy" />
+          </a>
+          <figcaption>Length of stay (my part): all four models met the 1-day MAE target. Elastic Net was within 0.02 days of the best and simpler, so we chose it.</figcaption>
+        </figure>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Important Features -->
+    <section class="project-story project-story-reverse">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">FEATURES</p>
+
+        <h2>
+          Which clinical variables carried useful predictive information?
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          The analysis identified several variables among the important
+          predictors for the mortality and length-of-stay tasks.
+        </p>
+
+        <div class="project-flow">
+
+          <div class="project-flow-item">
+            <span>01</span>
+            <p>GCS measurements</p>
+          </div>
+
+          <div class="project-flow-item">
+            <span>02</span>
+            <p>Respiratory failure</p>
+          </div>
+
+          <div class="project-flow-item">
+            <span>03</span>
+            <p>Sepsis</p>
+          </div>
+
+          <div class="project-flow-item">
+            <span>04</span>
+            <p>Urea nitrogen</p>
+          </div>
+
+          <div class="project-flow-item">
+            <span>05</span>
+            <p>Age and heart rate</p>
+          </div>
+
+          <div class="project-flow-item">
+            <span>06</span>
+            <p>Hematocrit</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Challenges -->
+    <section class="project-section">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">CHALLENGES</p>
+
+        <h2>
+          The hardest part was working with the structure of clinical data.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          One of the main challenges was handling the scale and structure
+          of the MIMIC-IV dataset. Clinical information was distributed
+          across different tables and contained a large number of records.
+        </p>
+
+        <p>
+          Missing values were another important consideration. Clinical
+          measurements are not necessarily recorded at the same frequency
+          for every patient, so the preprocessing workflow had to account
+          for incomplete observations.
+        </p>
+
+        <p>
+          These challenges reinforced the importance of understanding
+          the data-generating process before choosing a modeling approach.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- What I Learned -->
+    <section class="project-story project-story-reverse">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">WHAT I LEARNED</p>
+
+        <h2>
+          In healthcare ML, the modeling is only one part of the problem.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          Working with EHR data made the importance of preprocessing much
+          more concrete for me. Large clinical datasets are not immediately
+          ready for machine learning, and decisions around filtering,
+          imputation, feature construction, and data selection can strongly
+          influence the final results.
+        </p>
+
+        <p>
+          The project also gave me experience comparing classification
+          and regression approaches while thinking about model performance
+          within a specific application context.
+        </p>
+
+        <p>
+          More broadly, it reinforced an idea that has continued into my
+          other ML work: understanding the data and the system around a
+          model matters just as much as choosing the model itself.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- What I Would Build Next -->
+    <section class="project-section">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">WHAT I WOULD BUILD NEXT</p>
+
+        <h2>
+          There is still a lot more information that could be explored.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <div class="project-detail-block">
+
+          <h3>Patient subgroups</h3>
+
+          <p>
+            Explore how model performance and important predictors vary
+            across different patient subgroups.
+          </p>
+
+        </div>
+
+        <div class="project-detail-block">
+
+          <h3>Time-series modeling</h3>
+
+          <p>
+            Move beyond aggregated early measurements and explore the
+            temporal patterns within ICU observations.
+          </p>
+
+        </div>
+
+        <div class="project-detail-block">
+
+          <h3>Unstructured clinical notes</h3>
+
+          <p>
+            Incorporate clinical text using NLP to investigate whether
+            information outside structured EHR variables improves prediction.
+          </p>
+
+        </div>
+
+        <div class="project-detail-block">
+
+          <h3>More detailed length-of-stay modeling</h3>
+
+          <p>
+            Explore additional LOS categories and alternative modeling
+            strategies beyond the short-stay formulation.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Takeaways -->
+    <section class="project-story project-story-reverse">
+
+      <div class="project-section-heading">
+
+        <p class="section-label">TAKEAWAYS</p>
+
+        <h2>
+          The project gave me a different perspective on machine learning.
+        </h2>
+
+      </div>
+
+      <div class="project-section-content">
+
+        <p>
+          This project was one of my experiences at Northeastern University
+          working with real-world clinical data and applying machine learning
+          to a healthcare problem.
+        </p>
+
+        <p>
+          I came away with a stronger understanding of how data quality,
+          preprocessing, feature construction, and model evaluation interact
+          throughout an ML workflow.
+        </p>
+
+        <p>
+          It also reinforced my interest in problems where the surrounding
+          data and engineering decisions are as important as the model itself.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- Technology -->
+    <section class="project-stack">
+        <div class="project-section-heading">
+          <p class="section-label">TECHNOLOGY</p>
+          <h2>The tools behind the project.</h2>
+        </div>
+
+        <div class="stack-grid">
+          <div class="stack-item">
+            <span>LANGUAGE</span>
+            <p>Python</p>
+          </div>
+          <div class="stack-item">
+            <span>DATA</span>
+            <p>Pandas · NumPy</p>
+          </div>
+          <div class="stack-item">
+            <span>MODELS</span>
+            <p>Scikit-learn · XGBoost</p>
+          </div>
+          <div class="stack-item">
+            <span>VISUALIZATION</span>
+            <p>Matplotlib · Seaborn</p>
+          </div>
+          <div class="stack-item">
+            <span>ENVIRONMENT</span>
+            <p>Jupyter · Google Colab</p>
+          </div>
+          <div class="stack-item">
+            <span>DATASET</span>
+            <p>MIMIC-IV</p>
+          </div>
+        </div>
+      </section>
+
+<!-- Project End -->
+    <section class="project-end">
+        <p class="section-label">PROJECT</p>
+        <h2>Explore the implementation.</h2>
+
+        <div class="project-detail-links">
+          <a href="https://github.com/SushmithaSudharsan/icu-mortality-prediction-using-ehr-data" class="text-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href="https://github.com/SushmithaSudharsan/icu-mortality-prediction-using-ehr-data/blob/main/Final_Project%20Report.pdf" class="text-link" target="_blank" rel="noopener noreferrer">Read the project report</a>
+          <a href="/projects/" class="text-link">Back to projects</a>
+        </div>
+      </section>
+
+  
+      <!-- NEXT PROJECT -->
+      <div class="next-project">
+        <span class="section-label">MORE WORK</span>
+        <a href="/projects/#more-projects">Explore other projects</a>
+      </div>
+    </main>
+
+  <footer>
+      <div class="footer-content">
+        <p>&copy; 2026 Sushmitha Sudharsan</p>
+
+        <div class="footer-links">
+          <a href="mailto:sushmitha.sudharsan21@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/sushmitha-sudharsan-2101/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/SushmithaSudharsan" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/assets/Sushmitha_AIML_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>
+        </div>
+      </div>
+    </footer>
+
+  <script src="/js/script.js"></script>
+
+</body>
+
+</html>

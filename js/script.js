@@ -138,3 +138,188 @@ backToTop.addEventListener("click", () => {
     });
   });
 })();
+/* ========================================
+   EEG PULSE
+   A slowly scrolling EEG-style trace under the hero.
+   Synthetic signal (mixed rhythms plus occasional spikes),
+   drawn as one SVG path. Stops when off screen and is
+   drawn once, still, for visitors who prefer reduced motion.
+======================================== */
+
+(function () {
+  const path = document.querySelector(".pulse-trace");
+  if (!path) return;
+
+  const WIDTH = 1200;
+  const MID = 60;
+  const STEP = 4;
+  const POINTS = WIDTH / STEP;
+
+  function signal(x) {
+    let y =
+      9 * Math.sin(x * 0.11) +
+      6 * Math.sin(x * 0.27 + 1.3) +
+      3.5 * Math.sin(x * 0.71 + 0.4) +
+      2 * Math.sin(x * 1.9 + 2.1);
+
+    // an occasional sharp spike, like an event in the recording
+    const phase = x % 180;
+    if (phase < 3) y -= 34 * Math.sin((phase / 3) * Math.PI);
+    else if (phase < 6) y += 22 * Math.sin(((phase - 3) / 3) * Math.PI);
+
+    return MID + y;
+  }
+
+  function draw(offset) {
+    let d = "";
+    for (let i = 0; i <= POINTS; i++) {
+      d += (i ? "L" : "M") + i * STEP + " " + signal(i + offset).toFixed(1);
+    }
+    path.setAttribute("d", d);
+  }
+
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) {
+    draw(0);
+    return;
+  }
+
+  let offset = 0;
+  let running = true;
+  let last = 0;
+
+  function frame(time) {
+    if (!running) return;
+    if (time - last > 33) {
+      offset += 0.6;
+      draw(offset);
+      last = time;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  draw(0);
+  requestAnimationFrame(frame);
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      const visible = entries[0].isIntersecting;
+      if (visible && !running) {
+        running = true;
+        requestAnimationFrame(frame);
+      } else if (!visible) {
+        running = false;
+      }
+    }).observe(path);
+  }
+})();
+
+/* ========================================
+   COPY EMAIL
+======================================== */
+
+document.querySelectorAll(".copy-email").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const email = button.dataset.email;
+    const status = button.parentElement.querySelector(".copy-status");
+
+    function done(message) {
+      if (status) status.textContent = message;
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(
+        function () { done("Copied"); },
+        function () { done("Press Ctrl+C to copy"); }
+      );
+    } else {
+      done("Press Ctrl+C to copy");
+    }
+  });
+});
+
+/* ========================================
+   CASE STUDY "ON THIS PAGE" MENU
+   Built from each page's own section labels, so every
+   case study gets an accurate list. Only the sections a
+   recruiter is most likely to jump to are listed.
+======================================== */
+
+(function () {
+  if (!document.body.classList.contains("case-study")) return;
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const WANTED = {
+    "WHAT I BUILT": "What I built",
+    "ARCHITECTURE": "Architecture",
+    "ARCHITECTURE AND DEMO": "Architecture and demo",
+    "DEMO": "Demo",
+    "THE PROBLEM": "The problem",
+    "THE APPROACH": "The approach",
+    "HOW IT WORKS": "How it works",
+    "MY ROLE": "My role",
+    "CHALLENGES": "Challenges",
+    "RESULTS": "Results",
+    "WHAT I LEARNED": "What I learned",
+    "TAKEAWAYS": "Takeaways",
+    "TECHNOLOGY": "Technology"
+  };
+
+  const items = [];
+  main.querySelectorAll("section").forEach(function (section) {
+    const label = section.querySelector(":scope > .section-label, :scope > div > .section-label");
+    if (!label) return;
+    const key = label.textContent.replace(/\s+/g, " ").trim().toUpperCase();
+    if (!WANTED[key]) return;
+    if (!section.id) {
+      section.id = key.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    }
+    items.push({ id: section.id, text: WANTED[key], el: section });
+  });
+  if (items.length < 3) return;
+
+  const nav = document.createElement("nav");
+  nav.className = "toc";
+  nav.setAttribute("aria-label", "On this page");
+  nav.innerHTML =
+    '<span class="toc-label">ON THIS PAGE</span><ol>' +
+    items.map(function (i) { return '<li><a href="#' + i.id + '">' + i.text + "</a></li>"; }).join("") +
+    '</ol><a class="toc-top" href="#top">Back to top</a>';
+
+  const hero = main.querySelector(".project-detail-hero");
+  if (hero) hero.after(nav); else main.prepend(nav);
+  main.classList.add("has-toc");
+  if (!document.getElementById("top")) document.body.id = "top";
+
+  const links = nav.querySelectorAll("ol a");
+  function setCurrent(id) {
+    links.forEach(function (a) {
+      const on = a.getAttribute("href") === "#" + id;
+      if (on) {
+        a.setAttribute("aria-current", "true");
+        // keep the active chip visible in the phone row
+        if (window.innerWidth < 1100) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+      } else {
+        a.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  // the current section is the last one whose top has passed 30% of the screen
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const line = window.innerHeight * 0.3;
+    let current = items[0].id;
+    items.forEach(function (i) {
+      if (i.el.getBoundingClientRect().top <= line) current = i.id;
+    });
+    setCurrent(current);
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+
+  update();
+})();
