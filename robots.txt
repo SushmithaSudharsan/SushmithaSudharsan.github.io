@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /assets/Sushmitha_AIML_Resume.pdf
 
 Sitemap: https://sushmithasudharsan.github.io/sitemap.xml

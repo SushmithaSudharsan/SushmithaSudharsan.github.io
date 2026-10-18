@@ -215,28 +215,38 @@ backToTop.addEventListener("click", () => {
 })();
 
 /* ========================================
-   COPY EMAIL
+   EMAIL
+   The address is not written anywhere in the page source,
+   so simple scraper bots can't harvest it. It's put
+   together here for real visitors. Without JavaScript,
+   email links fall back to the Contact page.
 ======================================== */
 
-document.querySelectorAll(".copy-email").forEach(function (button) {
-  button.addEventListener("click", function () {
-    const email = button.dataset.email;
-    const status = button.parentElement.querySelector(".copy-status");
+(function () {
+  const email = ["sushmitha.sudharsan21", "gmail.com"].join("@");
 
-    function done(message) {
-      if (status) status.textContent = message;
-    }
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(
-        function () { done("Copied"); },
-        function () { done("Press Ctrl+C to copy"); }
-      );
-    } else {
-      done("Press Ctrl+C to copy");
-    }
+  document.querySelectorAll("[data-email-link]").forEach(function (a) {
+    a.setAttribute("href", "mailto:" + email);
   });
-});
+  document.querySelectorAll("[data-email-text]").forEach(function (el) {
+    el.textContent = email;
+  });
+
+  document.querySelectorAll(".copy-email").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const status = button.parentElement.querySelector(".copy-status");
+      function done(message) { if (status) status.textContent = message; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(
+          function () { done("Copied"); },
+          function () { done("Select the address to copy it"); }
+        );
+      } else {
+        done("Select the address to copy it");
+      }
+    });
+  });
+})();
 
 /* ========================================
    CASE STUDY "ON THIS PAGE" MENU
